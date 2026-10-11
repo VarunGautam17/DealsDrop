@@ -6,6 +6,14 @@
 (function () {
   'use strict';
 
+  // Early theme initialization to prevent flash of wrong theme
+  try {
+    var savedTheme = localStorage.getItem('dealsdrop_theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initialTheme = savedTheme === 'dark' || (!savedTheme && prefersDark) ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', initialTheme);
+  } catch (e) {}
+
   var PAGE_SIZE = 24;
 
   var state = {
@@ -663,29 +671,66 @@
       };
     }
 
-    // Reset all filters button
+    // Reset all filters function
+    function resetAllFilters() {
+      state.query = '';
+      if (searchInput) searchInput.value = '';
+      if (clearBtn) clearBtn.style.display = 'none';
+      var sortSelect = $('sort-select');
+      if (sortSelect) sortSelect.value = 'rank';
+      state.sort = 'rank';
+      state.store = 'all';
+      state.category = 'all';
+      state.section = 'all';
+      state.shownCount = PAGE_SIZE;
+
+      document.querySelectorAll('#section-tabs .section-tab-btn').forEach(function (b) {
+        var isAll = b.dataset.section === 'all';
+        b.classList.toggle('active', isAll);
+        b.setAttribute('aria-selected', String(isAll));
+      });
+      document.querySelectorAll('#store-pills .store-tab-btn').forEach(function (b) {
+        b.classList.toggle('active', b.dataset.store === 'all');
+      });
+      renderCategoryStrip();
+      applyFilters(true);
+    }
+
     var resetBtn = $('btn-reset-filters');
-    if (resetBtn) {
-      resetBtn.onclick = function () {
-        state.query = '';
-        if (searchInput) searchInput.value = '';
-        if (clearBtn) clearBtn.style.display = 'none';
-        state.store = 'all';
-        state.category = 'all';
-        state.section = 'all';
-        state.shownCount = PAGE_SIZE;
-        document.querySelectorAll('#section-tabs .section-tab-btn').forEach(function (b) {
-          var isAll = b.dataset.section === 'all';
-          b.classList.toggle('active', isAll);
-          b.setAttribute('aria-selected', String(isAll));
-        });
-        document.querySelectorAll('#store-pills .store-tab-btn').forEach(function (b) {
-          b.classList.toggle('active', b.dataset.store === 'all');
-        });
-        renderCategoryStrip();
-        applyFilters(true);
+    if (resetBtn) resetBtn.onclick = resetAllFilters;
+
+    var resetTopBtn = $('btn-reset-top');
+    if (resetTopBtn) resetTopBtn.onclick = resetAllFilters;
+
+    // Theme toggle setup
+    setupThemeToggle();
+  }
+
+  function setupThemeToggle() {
+    var currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    updateThemeButtonUI(currentTheme);
+
+    var toggleBtn = $('theme-toggle');
+    if (toggleBtn) {
+      toggleBtn.onclick = function () {
+        var active = document.documentElement.getAttribute('data-theme') || 'light';
+        var next = active === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try {
+          localStorage.setItem('dealsdrop_theme', next);
+        } catch (e) {}
+        updateThemeButtonUI(next);
       };
     }
+  }
+
+  function updateThemeButtonUI(theme) {
+    var icon = $('theme-icon');
+    var label = $('theme-label');
+    if (icon) icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    if (label) label.textContent = theme === 'dark' ? 'Light' : 'Dark';
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#0B0F15' : '#131921');
   }
 
   // Run on DOM ready

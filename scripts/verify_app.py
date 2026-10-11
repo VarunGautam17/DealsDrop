@@ -122,6 +122,9 @@ with open('index.html', 'r', encoding='utf-8') as f:
 assert 'id="sec-cnt-all">1563<' in html, "index.html must display 1563 total deals"
 assert 'id="sec-cnt-q">30<' in html, "index.html must display 30 for Q-rated"
 assert 'id="sec-cnt-f">40<' in html, "index.html must display 40 for Fastest Fingers"
+assert 'Stop Scrolling Countless Messages. <span>Find Real Deals!</span>' in html, "Header text must be updated"
+assert 'id="theme-toggle"' in html, "Theme toggle button must be present in index.html"
+assert 'id="btn-reset-top"' in html, "Reset filters button must be present in index.html"
 assert 'Prices as of 11 Oct 2026' in html, "Footer must note 11 Oct 2026 prices"
 
 # --- TEST 6: MEGA DEALS LATEST BROADCAST VERIFICATION ---
