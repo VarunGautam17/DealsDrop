@@ -260,6 +260,7 @@
     if (secBanner && state.section !== 'all') {
       var meta = SECTION_META[state.section] || SECTION_META.all;
       secBanner.hidden = false;
+      secBanner.dataset.section = state.section;
       if (secTitle) secTitle.innerHTML = meta.title;
       if (secDesc) secDesc.textContent = meta.desc;
       if (secBadge) secBadge.textContent = sorted.length + ' Deals';
@@ -412,7 +413,7 @@
       '</div>' +
       // CTAs
       '<div class="card-cta-row">' +
-      '<a class="btn-buy-deal" href="' + url + '" target="_blank" rel="sponsored noopener noreferrer">' +
+      '<a class="btn-buy-deal ' + storeCode + '" href="' + url + '" target="_blank" rel="sponsored noopener noreferrer">' +
       'Buy on ' + store + ' ↗' +
       '</a>' +
       '<a class="btn-share-deal" href="' + waUrl + '" target="_blank" rel="noopener" aria-label="Share on WhatsApp" title="Share on WhatsApp">' +
@@ -535,14 +536,13 @@
 
     // Filter candidate pool to ONLY specific quality deals with real prices & real titles
     var candidates = state.deals.filter(function (d) {
-      return (
-        d.category === cat &&
-        d.price >= floor &&
-        d.price > 0 &&
-        d.discount > 0 &&
-        !d.title.toLowerCase().startsWith('loot deal at') &&
-        !d.title.toLowerCase().startsWith('master link')
-      );
+      if (d.category !== cat || d.price < floor || d.price <= 0 || d.discount <= 0) return false;
+      var t = d.title.toLowerCase();
+      if (t.startsWith('loot deal at') || t.startsWith('master link')) return false;
+      if (cat === 'phone' && !/iphone|galaxy|pixel|oneplus|realme|redmi|xiaomi|poco|vivo|oppo|iqoo|motorola|moto|smartphone|mobile|infinix|nothing/i.test(t)) {
+        return false;
+      }
+      return true;
     });
 
     var pool = candidates.filter(function (d) { return d.price >= min && d.price < max; });
