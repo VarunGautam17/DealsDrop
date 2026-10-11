@@ -1,0 +1,32 @@
+# DealsDrop .gitignore
+
+# Raw chat exports & temporary text dumps
+*.txt
+!*.md
+
+# Raw / Intermediate data files
+data/raw_deals.json
+data/*.txt
+
+# Deprecated monolithic prototypes & reference site downloads
+DealsDrop.html
+Dhananjay/
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# OS and Editor junk
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Node & Netlify local cache
+node_modules/
+.netlify/

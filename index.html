@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>DealsDrop 🔻🔥 · Curated Festival Deals 2026</title>
+  <meta name="description" content="Top curated deals from Flipkart Big Billion Days, Amazon Great Indian Festival, Myntra and Ajio. Real loots, price-history verified.">
+  <meta name="theme-color" content="#F8FAFC">
+
+  <!-- Google Fonts: Bricolage Grotesque & Figtree -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Live Sale Event Ticker -->
+  <div class="top-ticker" role="status" aria-live="polite">
+    <span class="pulse-dot"></span>
+    <span>🔥 Flipkart Big Billion Days &amp; Amazon Great Indian Festival LIVE &bull; Verified Festival Prices</span>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-row">
+      <a href="#top" class="logo-wrap" aria-label="DealsDrop Home">
+        <span class="icon">🔻</span> DealsDrop <span class="logo-badge">Loot Radar</span>
+      </a>
+
+      <div class="header-cta-group">
+        <a href="https://whatsapp.com/channel/0029VbCAAl6F1YlVp8hg3l3u" target="_blank" rel="noopener" class="channel-btn wa" aria-label="Join DealsDrop WhatsApp Channel">
+          💬 WhatsApp Channel
+        </a>
+        <a href="https://t.me/HotDeals31" target="_blank" rel="noopener" class="channel-btn tg" aria-label="Join DealsDrop Telegram">
+          ✈️ Telegram
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="top">
+
+    <!-- Hero & Deal Matchmaker Accordion -->
+    <section class="hero-box">
+      <div class="hero-header">
+        <div class="hero-title-group">
+          <h1>Stop Scrolling 500 Messages. <span>Find Real Loots.</span></h1>
+          <p>Over <strong id="hero-total-count">1,500+</strong> verified live festival deals, curated so you only buy what is worth the money.</p>
+        </div>
+
+        <button type="button" class="matchmaker-trigger-btn" id="mm-trigger" aria-expanded="false">
+          <span>🎯 What do you need?</span> <span id="mm-caret" style="font-size: 11px;">▾</span>
+        </button>
+      </div>
+
+      <!-- Expandable Matchmaker Panel -->
+      <div class="matchmaker-panel" id="mm-panel" hidden>
+        <span class="step-header">1. Select Category</span>
+        <div class="chip-row" id="mm-cat-row"></div>
+
+        <div id="mm-budget-container" hidden>
+          <span class="step-header">2. Select Your Budget</span>
+          <div class="chip-row" id="mm-budget-row"></div>
+        </div>
+
+        <div id="mm-priority-container" hidden>
+          <span class="step-header">3. What Matters Most?</span>
+          <div class="chip-row" id="mm-priority-row"></div>
+        </div>
+
+        <div class="matchmaker-result-card" id="mm-result-container" hidden></div>
+      </div>
+    </section>
+
+    <!-- TOP STICKY FILTER & SEARCH STRIP -->
+    <section class="filter-strip-wrapper" id="filter-controls" aria-label="Search and filter deals">
+      <!-- Section Switcher Tabs on Top -->
+      <div class="section-tabs-strip" id="section-tabs" role="tablist" aria-label="Curated Sections">
+        <button type="button" class="section-tab-btn active" data-section="all" role="tab" aria-selected="true">
+          <span class="sec-icon">🛍️</span> All Deals <span class="sec-count" id="sec-cnt-all">1563</span>
+        </button>
+        <button type="button" class="section-tab-btn" data-section="q_rated" role="tab" aria-selected="false">
+          <span class="sec-icon">🎯</span> Q-Rated Picks <span class="sec-count" id="sec-cnt-q">30</span>
+        </button>
+        <button type="button" class="section-tab-btn" data-section="hot_drops" role="tab" aria-selected="false">
+          <span class="sec-icon">🔥</span> Hot Drops <span class="sec-count" id="sec-cnt-h">30</span>
+        </button>
+        <button type="button" class="section-tab-btn" data-section="lowest_price" role="tab" aria-selected="false">
+          <span class="sec-icon">🔻</span> Lowest Price Ever <span class="sec-count" id="sec-cnt-l">30</span>
+        </button>
+        <button type="button" class="section-tab-btn" data-section="fastest_fingers" role="tab" aria-selected="false">
+          <span class="sec-icon">⚡</span> Fastest Fingers First <span class="sec-count" id="sec-cnt-f">40</span>
+        </button>
+      </div>
+
+      <div class="filter-main-row">
+        <!-- 1-Click Search Bar -->
+        <div class="search-container">
+          <svg class="search-icon-svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
+          </svg>
+          <input type="search" id="search-input" class="search-input" placeholder="Search product, brand, specs (e.g. iPhone, Sony, TV)..." autocomplete="off" spellcheck="false" aria-label="Search deals">
+          <button type="button" id="search-clear" class="search-clear-btn" aria-label="Clear search">✕</button>
+        </div>
+
+        <!-- Store Filter Pills -->
+        <div class="store-pills-group" id="store-pills" role="group" aria-label="Store Filter">
+          <button type="button" class="store-tab-btn active" data-store="all">All <span class="badge" id="sc-all">1427</span></button>
+          <button type="button" class="store-tab-btn" data-store="amazon">Amazon <span class="badge" id="sc-amazon">593</span></button>
+          <button type="button" class="store-tab-btn" data-store="flipkart">Flipkart <span class="badge" id="sc-flipkart">709</span></button>
+          <button type="button" class="store-tab-btn" data-store="myntra">Myntra <span class="badge" id="sc-myntra">92</span></button>
+          <button type="button" class="store-tab-btn" data-store="ajio">Ajio <span class="badge" id="sc-ajio">33</span></button>
+        </div>
+
+        <!-- Sort Select -->
+        <div class="sort-wrap">
+          <select id="sort-select" aria-label="Sort Deals">
+            <option value="rank">🎯 Best Deal First</option>
+            <option value="pct">🔥 Biggest Discount %</option>
+            <option value="low">💰 Price: Low to High</option>
+            <option value="high">💎 Price: High to Low</option>
+          </select>
+        </div>
+
+        <!-- Live Deal Counter -->
+        <div class="deal-count-status" id="count-status" aria-live="polite">
+          Showing 24 of <b>1,427</b> deals
+        </div>
+      </div>
+
+      <!-- Category Filter Strip -->
+      <div class="category-strip" id="cat-strip" role="group" aria-label="Category Filter"></div>
+    </section>
+
+    <!-- Deals Grid Section -->
+    <section class="deals-grid-section">
+      <!-- Active Section Banner Header -->
+      <div class="section-header-banner" id="section-banner" hidden>
+        <div class="sec-banner-text">
+          <h2 id="sec-banner-title"><span>🎯</span> Q-Rated Picks</h2>
+          <p id="sec-banner-desc">Hand-picked editor favorites: steep discounts on high-value products worth owning.</p>
+        </div>
+        <div class="sec-banner-count" id="sec-banner-badge">30 Deals</div>
+      </div>
+
+      <div class="deals-grid" id="deals-container"></div>
+
+      <!-- Empty State -->
+      <div class="empty-state-box" id="empty-box" hidden>
+        <h3>No matching deals found</h3>
+        <p>Try searching for a different keyword or resetting your store/category filter.</p>
+        <button type="button" class="clear-filters-btn" id="btn-reset-filters">Reset All Filters</button>
+      </div>
+
+      <!-- Load More Button -->
+      <div class="load-more-container" id="more-container">
+        <button type="button" class="load-more-btn" id="btn-more-deals">
+          Show More Deals <span id="more-badge" style="font-size: 13px; font-weight: 600; opacity: 0.8;"></span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="container">
+    <div class="footer-content">
+      <div class="logo-wrap" style="font-size: 20px;">
+        <span class="icon">🔻</span> DealsDrop 🔥
+      </div>
+
+      <div class="header-cta-group">
+        <a href="https://whatsapp.com/channel/0029VbCAAl6F1YlVp8hg3l3u" target="_blank" rel="noopener" class="channel-btn wa" style="padding: 6px 12px; font-size: 12px;">
+          WhatsApp Channel
+        </a>
+        <a href="https://t.me/HotDeals31" target="_blank" rel="noopener" class="channel-btn tg" style="padding: 6px 12px; font-size: 12px;">
+          Telegram
+        </a>
+      </div>
+    </div>
+
+    <p class="footer-disclaimer">
+      Prices as of 11 Oct 2026. Flash loots, price errors, and card discounts change rapidly during Flipkart Big Billion Days and Amazon Great Indian Festival. Verify effective price on retailer checkout.
+    </p>
+  </footer>
+
+  <!-- Data Bundle Fallback -->
+  <script src="data/deals_data.js"></script>
+  <!-- Main Script -->
+  <script src="app.js"></script>
+</body>
+</html>
