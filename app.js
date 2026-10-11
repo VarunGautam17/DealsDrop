@@ -702,6 +702,27 @@
     var resetTopBtn = $('btn-reset-top');
     if (resetTopBtn) resetTopBtn.onclick = resetAllFilters;
 
+    // Floating quick top / filter button
+    var floatingTop = $('btn-floating-top');
+    if (floatingTop) {
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 380) {
+          floatingTop.classList.add('visible');
+        } else {
+          floatingTop.classList.remove('visible');
+        }
+      }, { passive: true });
+
+      floatingTop.onclick = function () {
+        var fc = $('filter-controls');
+        if (fc) {
+          fc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      };
+    }
+
     // Theme toggle setup
     setupThemeToggle();
   }

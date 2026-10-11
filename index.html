@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20261012_0245">
 </head>
 <body>
 
@@ -117,7 +117,7 @@
           <button type="button" class="store-tab-btn" data-store="ajio">Ajio <span class="badge" id="sc-ajio">33</span></button>
         </div>
 
-        <!-- Sort, Reset & Counter Group -->
+        <!-- Sort & Reset Group -->
         <div class="filter-controls-subgroup">
           <div class="sort-wrap">
             <select id="sort-select" aria-label="Sort Deals">
@@ -132,11 +132,11 @@
           <button type="button" class="btn-reset-filters-bar" id="btn-reset-top" title="Reset all search, stores and category filters" aria-label="Reset all filters">
             <span class="reset-icon">↺</span> Reset
           </button>
+        </div>
 
-          <!-- Live Deal Counter -->
-          <div class="deal-count-status" id="count-status" aria-live="polite">
-            Showing 24 of <b>1,563</b> deals
-          </div>
+        <!-- Live Deal Counter -->
+        <div class="deal-count-status" id="count-status" aria-live="polite">
+          Showing 24 of <b>1,563</b> deals
         </div>
       </div>
 
@@ -172,6 +172,10 @@
       </div>
     </section>
 
+    <!-- Floating Quick Filters / Top Action Button -->
+    <button type="button" id="btn-floating-top" class="floating-top-btn" aria-label="Jump to search and filters">
+      <span>↑</span> Filters / Top
+    </button>
   </main>
 
   <!-- Footer -->
@@ -199,8 +203,8 @@
   </footer>
 
   <!-- Data Bundle Fallback -->
-  <script src="data/deals_data.js"></script>
+  <script src="data/deals_data.js?v=20261012_0245"></script>
   <!-- Main Script -->
-  <script src="app.js"></script>
+  <script src="app.js?v=20261012_0245"></script>
 </body>
 </html>
